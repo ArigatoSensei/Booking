@@ -66,7 +66,8 @@ namespace Booking.Infrastructure.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<int>("Occupancy")
                         .HasColumnType("int");
@@ -88,7 +89,7 @@ namespace Booking.Infrastructure.Migrations
                         new
                         {
                             Id = 1,
-                            Date_19118162 = new DateTime(2024, 7, 10, 17, 41, 50, 423, DateTimeKind.Local).AddTicks(3554),
+                            Date_19118162 = new DateTime(2024, 7, 11, 12, 34, 45, 555, DateTimeKind.Local).AddTicks(9766),
                             Description = "Fusce 11 tincidunt maximus leo, sed scelerisque massa auctor sit amet. Donec ex mauris, hendrerit quis nibh ac, efficitur fringilla enim.",
                             ImageUrl = "https://placehold.co/600x400",
                             Name = "Royal Villa",
@@ -99,7 +100,7 @@ namespace Booking.Infrastructure.Migrations
                         new
                         {
                             Id = 2,
-                            Date_19118162 = new DateTime(2024, 7, 10, 17, 41, 50, 423, DateTimeKind.Local).AddTicks(3603),
+                            Date_19118162 = new DateTime(2024, 7, 11, 12, 34, 45, 555, DateTimeKind.Local).AddTicks(9823),
                             Description = "Fusce 11 tincidunt maximus leo, sed scelerisque massa auctor sit amet. Donec ex mauris, hendrerit quis nibh ac, efficitur fringilla enim.",
                             ImageUrl = "https://placehold.co/600x401",
                             Name = "Premium Pool Villa",
@@ -110,7 +111,7 @@ namespace Booking.Infrastructure.Migrations
                         new
                         {
                             Id = 3,
-                            Date_19118162 = new DateTime(2024, 7, 10, 17, 41, 50, 423, DateTimeKind.Local).AddTicks(3641),
+                            Date_19118162 = new DateTime(2024, 7, 11, 12, 34, 45, 555, DateTimeKind.Local).AddTicks(9825),
                             Description = "Fusce 11 tincidunt maximus leo, sed scelerisque massa auctor sit amet. Donec ex mauris, hendrerit quis nibh ac, efficitur fringilla enim.",
                             ImageUrl = "https://placehold.co/600x402",
                             Name = "Luxury Pool Villa",
@@ -118,6 +119,94 @@ namespace Booking.Infrastructure.Migrations
                             Price = 400.0,
                             Sqft = 750
                         });
+                });
+
+            modelBuilder.Entity("Booking.Domain.Entities.VillaNumber", b =>
+                {
+                    b.Property<int>("Villa_Number")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("Date_19118162")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("SpecialDetails")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("VillaId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Villa_Number");
+
+                    b.HasIndex("VillaId");
+
+                    b.ToTable("VillaNumbers", "19118162");
+
+                    b.HasData(
+                        new
+                        {
+                            Villa_Number = 101,
+                            Date_19118162 = new DateTime(2024, 7, 11, 12, 34, 45, 555, DateTimeKind.Local).AddTicks(9899),
+                            VillaId = 1
+                        },
+                        new
+                        {
+                            Villa_Number = 102,
+                            Date_19118162 = new DateTime(2024, 7, 11, 12, 34, 45, 555, DateTimeKind.Local).AddTicks(9902),
+                            VillaId = 1
+                        },
+                        new
+                        {
+                            Villa_Number = 103,
+                            Date_19118162 = new DateTime(2024, 7, 11, 12, 34, 45, 555, DateTimeKind.Local).AddTicks(9904),
+                            VillaId = 1
+                        },
+                        new
+                        {
+                            Villa_Number = 104,
+                            Date_19118162 = new DateTime(2024, 7, 11, 12, 34, 45, 555, DateTimeKind.Local).AddTicks(9906),
+                            VillaId = 1
+                        },
+                        new
+                        {
+                            Villa_Number = 201,
+                            Date_19118162 = new DateTime(2024, 7, 11, 12, 34, 45, 555, DateTimeKind.Local).AddTicks(9907),
+                            VillaId = 2
+                        },
+                        new
+                        {
+                            Villa_Number = 202,
+                            Date_19118162 = new DateTime(2024, 7, 11, 12, 34, 45, 555, DateTimeKind.Local).AddTicks(9909),
+                            VillaId = 2
+                        },
+                        new
+                        {
+                            Villa_Number = 203,
+                            Date_19118162 = new DateTime(2024, 7, 11, 12, 34, 45, 555, DateTimeKind.Local).AddTicks(9911),
+                            VillaId = 2
+                        },
+                        new
+                        {
+                            Villa_Number = 301,
+                            Date_19118162 = new DateTime(2024, 7, 11, 12, 34, 45, 555, DateTimeKind.Local).AddTicks(9912),
+                            VillaId = 3
+                        },
+                        new
+                        {
+                            Villa_Number = 302,
+                            Date_19118162 = new DateTime(2024, 7, 11, 12, 34, 45, 555, DateTimeKind.Local).AddTicks(9914),
+                            VillaId = 3
+                        });
+                });
+
+            modelBuilder.Entity("Booking.Domain.Entities.VillaNumber", b =>
+                {
+                    b.HasOne("Booking.Domain.Entities.Villa", "Villa")
+                        .WithMany()
+                        .HasForeignKey("VillaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Villa");
                 });
 #pragma warning restore 612, 618
         }
