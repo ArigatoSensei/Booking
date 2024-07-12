@@ -1,14 +1,17 @@
 ﻿using Booking.Application.Common.Interfaces;
+using Booking.Application.Common.Utility;
 using Booking.Domain.Entities;
 using Booking.Infrastructure.Data;
 using Booking.Infrastructure.Repository;
 using Booking.Web.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 
 namespace Booking.Web.Controllers
 {
+    [Authorize(Roles = SD.Role_Admin)]
     public class AmenityController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;

@@ -4,6 +4,7 @@ using Booking.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Booking.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240712111138_AddIdentity")]
+    partial class AddIdentity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -53,152 +56,80 @@ namespace Booking.Infrastructure.Migrations
                         new
                         {
                             Id = 1,
-                            Date_19118162 = new DateTime(2024, 7, 12, 14, 19, 36, 525, DateTimeKind.Local).AddTicks(5691),
+                            Date_19118162 = new DateTime(2024, 7, 12, 14, 11, 37, 757, DateTimeKind.Local).AddTicks(9471),
                             Name = "Private Pool",
                             VillaId = 1
                         },
                         new
                         {
                             Id = 2,
-                            Date_19118162 = new DateTime(2024, 7, 12, 14, 19, 36, 525, DateTimeKind.Local).AddTicks(5694),
+                            Date_19118162 = new DateTime(2024, 7, 12, 14, 11, 37, 757, DateTimeKind.Local).AddTicks(9474),
                             Name = "Microwave",
                             VillaId = 1
                         },
                         new
                         {
                             Id = 3,
-                            Date_19118162 = new DateTime(2024, 7, 12, 14, 19, 36, 525, DateTimeKind.Local).AddTicks(5695),
+                            Date_19118162 = new DateTime(2024, 7, 12, 14, 11, 37, 757, DateTimeKind.Local).AddTicks(9475),
                             Name = "Private Balcony",
                             VillaId = 1
                         },
                         new
                         {
                             Id = 4,
-                            Date_19118162 = new DateTime(2024, 7, 12, 14, 19, 36, 525, DateTimeKind.Local).AddTicks(5697),
+                            Date_19118162 = new DateTime(2024, 7, 12, 14, 11, 37, 757, DateTimeKind.Local).AddTicks(9477),
                             Name = "1 king bed and 1 sofa bed",
                             VillaId = 1
                         },
                         new
                         {
                             Id = 5,
-                            Date_19118162 = new DateTime(2024, 7, 12, 14, 19, 36, 525, DateTimeKind.Local).AddTicks(5699),
+                            Date_19118162 = new DateTime(2024, 7, 12, 14, 11, 37, 757, DateTimeKind.Local).AddTicks(9479),
                             Name = "Private Plunge Pool",
                             VillaId = 2
                         },
                         new
                         {
                             Id = 6,
-                            Date_19118162 = new DateTime(2024, 7, 12, 14, 19, 36, 525, DateTimeKind.Local).AddTicks(5701),
+                            Date_19118162 = new DateTime(2024, 7, 12, 14, 11, 37, 757, DateTimeKind.Local).AddTicks(9481),
                             Name = "Microwave and Mini Refrigerator",
                             VillaId = 2
                         },
                         new
                         {
                             Id = 7,
-                            Date_19118162 = new DateTime(2024, 7, 12, 14, 19, 36, 525, DateTimeKind.Local).AddTicks(5703),
+                            Date_19118162 = new DateTime(2024, 7, 12, 14, 11, 37, 757, DateTimeKind.Local).AddTicks(9483),
                             Name = "Private Balcony",
                             VillaId = 2
                         },
                         new
                         {
                             Id = 8,
-                            Date_19118162 = new DateTime(2024, 7, 12, 14, 19, 36, 525, DateTimeKind.Local).AddTicks(5704),
+                            Date_19118162 = new DateTime(2024, 7, 12, 14, 11, 37, 757, DateTimeKind.Local).AddTicks(9484),
                             Name = "King bed or 2 double beds",
                             VillaId = 2
                         },
                         new
                         {
                             Id = 9,
-                            Date_19118162 = new DateTime(2024, 7, 12, 14, 19, 36, 525, DateTimeKind.Local).AddTicks(5706),
+                            Date_19118162 = new DateTime(2024, 7, 12, 14, 11, 37, 757, DateTimeKind.Local).AddTicks(9486),
                             Name = "Private Pool",
                             VillaId = 3
                         },
                         new
                         {
                             Id = 10,
-                            Date_19118162 = new DateTime(2024, 7, 12, 14, 19, 36, 525, DateTimeKind.Local).AddTicks(5708),
+                            Date_19118162 = new DateTime(2024, 7, 12, 14, 11, 37, 757, DateTimeKind.Local).AddTicks(9488),
                             Name = "Jacuzzi",
                             VillaId = 3
                         },
                         new
                         {
                             Id = 11,
-                            Date_19118162 = new DateTime(2024, 7, 12, 14, 19, 36, 525, DateTimeKind.Local).AddTicks(5710),
+                            Date_19118162 = new DateTime(2024, 7, 12, 14, 11, 37, 757, DateTimeKind.Local).AddTicks(9490),
                             Name = "Private Balcony",
                             VillaId = 3
                         });
-                });
-
-            modelBuilder.Entity("Booking.Domain.Entities.ApplicationUser", b =>
-                {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<int>("AccessFailedCount")
-                        .HasColumnType("int");
-
-                    b.Property<string>("ConcurrencyStamp")
-                        .IsConcurrencyToken()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Email")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
-
-                    b.Property<bool>("EmailConfirmed")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("LockoutEnabled")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTimeOffset?>("LockoutEnd")
-                        .HasColumnType("datetimeoffset");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("NormalizedEmail")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
-
-                    b.Property<string>("NormalizedUserName")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
-
-                    b.Property<string>("PasswordHash")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PhoneNumber")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("PhoneNumberConfirmed")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("SecurityStamp")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("TwoFactorEnabled")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("UserName")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("NormalizedEmail")
-                        .HasDatabaseName("EmailIndex");
-
-                    b.HasIndex("NormalizedUserName")
-                        .IsUnique()
-                        .HasDatabaseName("UserNameIndex")
-                        .HasFilter("[NormalizedUserName] IS NOT NULL");
-
-                    b.ToTable("AspNetUsers", (string)null);
                 });
 
             modelBuilder.Entity("Booking.Domain.Entities.Log_19118162", b =>
@@ -268,7 +199,7 @@ namespace Booking.Infrastructure.Migrations
                         new
                         {
                             Id = 1,
-                            Date_19118162 = new DateTime(2024, 7, 12, 14, 19, 36, 525, DateTimeKind.Local).AddTicks(5438),
+                            Date_19118162 = new DateTime(2024, 7, 12, 14, 11, 37, 757, DateTimeKind.Local).AddTicks(9051),
                             Description = "Fusce 11 tincidunt maximus leo, sed scelerisque massa auctor sit amet. Donec ex mauris, hendrerit quis nibh ac, efficitur fringilla enim.",
                             ImageUrl = "https://placehold.co/600x400",
                             Name = "Royal Villa",
@@ -279,7 +210,7 @@ namespace Booking.Infrastructure.Migrations
                         new
                         {
                             Id = 2,
-                            Date_19118162 = new DateTime(2024, 7, 12, 14, 19, 36, 525, DateTimeKind.Local).AddTicks(5477),
+                            Date_19118162 = new DateTime(2024, 7, 12, 14, 11, 37, 757, DateTimeKind.Local).AddTicks(9101),
                             Description = "Fusce 11 tincidunt maximus leo, sed scelerisque massa auctor sit amet. Donec ex mauris, hendrerit quis nibh ac, efficitur fringilla enim.",
                             ImageUrl = "https://placehold.co/600x401",
                             Name = "Premium Pool Villa",
@@ -290,7 +221,7 @@ namespace Booking.Infrastructure.Migrations
                         new
                         {
                             Id = 3,
-                            Date_19118162 = new DateTime(2024, 7, 12, 14, 19, 36, 525, DateTimeKind.Local).AddTicks(5480),
+                            Date_19118162 = new DateTime(2024, 7, 12, 14, 11, 37, 757, DateTimeKind.Local).AddTicks(9104),
                             Description = "Fusce 11 tincidunt maximus leo, sed scelerisque massa auctor sit amet. Donec ex mauris, hendrerit quis nibh ac, efficitur fringilla enim.",
                             ImageUrl = "https://placehold.co/600x402",
                             Name = "Luxury Pool Villa",
@@ -324,55 +255,55 @@ namespace Booking.Infrastructure.Migrations
                         new
                         {
                             Villa_Number = 101,
-                            Date_19118162 = new DateTime(2024, 7, 12, 14, 19, 36, 525, DateTimeKind.Local).AddTicks(5645),
+                            Date_19118162 = new DateTime(2024, 7, 12, 14, 11, 37, 757, DateTimeKind.Local).AddTicks(9419),
                             VillaId = 1
                         },
                         new
                         {
                             Villa_Number = 102,
-                            Date_19118162 = new DateTime(2024, 7, 12, 14, 19, 36, 525, DateTimeKind.Local).AddTicks(5648),
+                            Date_19118162 = new DateTime(2024, 7, 12, 14, 11, 37, 757, DateTimeKind.Local).AddTicks(9422),
                             VillaId = 1
                         },
                         new
                         {
                             Villa_Number = 103,
-                            Date_19118162 = new DateTime(2024, 7, 12, 14, 19, 36, 525, DateTimeKind.Local).AddTicks(5650),
+                            Date_19118162 = new DateTime(2024, 7, 12, 14, 11, 37, 757, DateTimeKind.Local).AddTicks(9423),
                             VillaId = 1
                         },
                         new
                         {
                             Villa_Number = 104,
-                            Date_19118162 = new DateTime(2024, 7, 12, 14, 19, 36, 525, DateTimeKind.Local).AddTicks(5652),
+                            Date_19118162 = new DateTime(2024, 7, 12, 14, 11, 37, 757, DateTimeKind.Local).AddTicks(9425),
                             VillaId = 1
                         },
                         new
                         {
                             Villa_Number = 201,
-                            Date_19118162 = new DateTime(2024, 7, 12, 14, 19, 36, 525, DateTimeKind.Local).AddTicks(5653),
+                            Date_19118162 = new DateTime(2024, 7, 12, 14, 11, 37, 757, DateTimeKind.Local).AddTicks(9427),
                             VillaId = 2
                         },
                         new
                         {
                             Villa_Number = 202,
-                            Date_19118162 = new DateTime(2024, 7, 12, 14, 19, 36, 525, DateTimeKind.Local).AddTicks(5655),
+                            Date_19118162 = new DateTime(2024, 7, 12, 14, 11, 37, 757, DateTimeKind.Local).AddTicks(9428),
                             VillaId = 2
                         },
                         new
                         {
                             Villa_Number = 203,
-                            Date_19118162 = new DateTime(2024, 7, 12, 14, 19, 36, 525, DateTimeKind.Local).AddTicks(5657),
+                            Date_19118162 = new DateTime(2024, 7, 12, 14, 11, 37, 757, DateTimeKind.Local).AddTicks(9430),
                             VillaId = 2
                         },
                         new
                         {
                             Villa_Number = 301,
-                            Date_19118162 = new DateTime(2024, 7, 12, 14, 19, 36, 525, DateTimeKind.Local).AddTicks(5659),
+                            Date_19118162 = new DateTime(2024, 7, 12, 14, 11, 37, 757, DateTimeKind.Local).AddTicks(9432),
                             VillaId = 3
                         },
                         new
                         {
                             Villa_Number = 302,
-                            Date_19118162 = new DateTime(2024, 7, 12, 14, 19, 36, 525, DateTimeKind.Local).AddTicks(5660),
+                            Date_19118162 = new DateTime(2024, 7, 12, 14, 11, 37, 757, DateTimeKind.Local).AddTicks(9433),
                             VillaId = 3
                         });
                 });
@@ -427,6 +358,71 @@ namespace Booking.Infrastructure.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetRoleClaims", (string)null);
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUser", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("AccessFailedCount")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Email")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<bool>("EmailConfirmed")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("LockoutEnabled")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTimeOffset?>("LockoutEnd")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<string>("NormalizedEmail")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<string>("NormalizedUserName")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<string>("PasswordHash")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("PhoneNumberConfirmed")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("SecurityStamp")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("TwoFactorEnabled")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("UserName")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("NormalizedEmail")
+                        .HasDatabaseName("EmailIndex");
+
+                    b.HasIndex("NormalizedUserName")
+                        .IsUnique()
+                        .HasDatabaseName("UserNameIndex")
+                        .HasFilter("[NormalizedUserName] IS NOT NULL");
+
+                    b.ToTable("AspNetUsers", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
@@ -543,7 +539,7 @@ namespace Booking.Infrastructure.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
-                    b.HasOne("Booking.Domain.Entities.ApplicationUser", null)
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -552,7 +548,7 @@ namespace Booking.Infrastructure.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
-                    b.HasOne("Booking.Domain.Entities.ApplicationUser", null)
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -567,7 +563,7 @@ namespace Booking.Infrastructure.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Booking.Domain.Entities.ApplicationUser", null)
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -576,7 +572,7 @@ namespace Booking.Infrastructure.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
-                    b.HasOne("Booking.Domain.Entities.ApplicationUser", null)
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
