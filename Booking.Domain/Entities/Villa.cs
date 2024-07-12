@@ -31,6 +31,8 @@ namespace Booking.Domain.Entities
         public DateTime? Updated_Date { get; set; }
         [ValidateNever]
         public IEnumerable<Amenity> VillaAmenity { get; set; }
+        [NotMapped]
+        public bool IsAvailable { get; set; } = true;
         public DateTime Date_19118162 { get; set; } = DateTime.Now;
     }
 }
