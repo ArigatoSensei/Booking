@@ -30,7 +30,7 @@ namespace Booking.Infrastructure.Data
             {
                 Id = 1,
                 Name = "Royal Villa",
-                Description = "Fusce 11 tincidunt maximus leo, sed scelerisque massa auctor sit amet. Donec ex mauris, hendrerit quis nibh ac, efficitur fringilla enim.",
+                Description = "Villa, country estate, complete with house, grounds, and subsidiary buildings.",
                 ImageUrl = "https://placehold.co/600x400",
                 Occupancy = 4,
                 Price = 200,
@@ -40,7 +40,7 @@ namespace Booking.Infrastructure.Data
                 {
                     Id = 2,
                     Name = "Premium Pool Villa",
-                    Description = "Fusce 11 tincidunt maximus leo, sed scelerisque massa auctor sit amet. Donec ex mauris, hendrerit quis nibh ac, efficitur fringilla enim.",
+                    Description = "Villa, country estate, complete with house, grounds, and subsidiary buildings.",
                     ImageUrl = "https://placehold.co/600x401",
                     Occupancy = 4,
                     Price = 300,
@@ -50,7 +50,7 @@ namespace Booking.Infrastructure.Data
                     {
                         Id = 3,
                         Name = "Luxury Pool Villa",
-                        Description = "Fusce 11 tincidunt maximus leo, sed scelerisque massa auctor sit amet. Donec ex mauris, hendrerit quis nibh ac, efficitur fringilla enim.",
+                        Description = "Villa, country estate, complete with house, grounds, and subsidiary buildings.",
                         ImageUrl = "https://placehold.co/600x402",
                         Occupancy = 4,
                         Price = 400,
