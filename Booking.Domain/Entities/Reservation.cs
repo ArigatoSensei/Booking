@@ -36,7 +36,7 @@ namespace Booking.Domain.Entities
         public string? Status { get; set; }
 
         [Required]
-        public DateTime BookingDate { get; set; }
+        public DateTime ReservationDate { get; set; }
         [Required]
         public DateOnly CheckInDate { get; set; }
         [Required]
