@@ -13,6 +13,7 @@ namespace Booking.Domain.Entities
         public Guid Id { get; set; }
         public string TableName { get; set; }
         public string OperationType { get; set; }
+        public string Details { get; set; }
         public DateTime Date { get; set; }
     }
 }

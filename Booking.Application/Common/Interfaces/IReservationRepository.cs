@@ -12,6 +12,8 @@ namespace Booking.Application.Common.Interfaces
     {
         
         void Update(Reservation entity);
-        
+        void UpdateStatus(int reservationId, string reservationStatus);
+        void UpdateStripePaymentID(int reservationId, string sessionId, string paymentIntentId);
+
     }
 }

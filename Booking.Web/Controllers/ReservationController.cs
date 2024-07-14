@@ -3,6 +3,7 @@ using Booking.Application.Common.Utility;
 using Booking.Domain.Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Stripe.Checkout;
 using System.Security.Claims;
 
 namespace Booking.Web.Controllers
@@ -50,13 +51,64 @@ namespace Booking.Web.Controllers
                 _unitOfWork.Reservation.Add(reservation);
                 _unitOfWork.Save();
                 LogAction("Insert", "Reservation", $"Created Reservation with Id: {reservation.Id}");
-                return RedirectToAction(nameof(ReservationConfirmation), new { reservationId = reservation.Id });
+
+
+            var domain = Request.Scheme + "://" + Request.Host.Value + "/";
+            var options = new SessionCreateOptions
+            {
+                LineItems = new List<SessionLineItemOptions>(),
+                Mode = "payment",
+                SuccessUrl = domain + $"reservation/ReservationConfirmation?reservationId={reservation.Id}",
+                CancelUrl = domain + $"reservation/FinalizeReservation?villaId={reservation.VillaId}&checkInDate={reservation.CheckInDate}&nights={reservation.Nights}",
+            };
+
+
+            options.LineItems.Add(new SessionLineItemOptions
+            {
+                PriceData = new SessionLineItemPriceDataOptions
+                {
+                    UnitAmount = (long)(reservation.TotalCost * 100),
+                    Currency = "usd",
+                    ProductData = new SessionLineItemPriceDataProductDataOptions
+                    {
+                        Name = villa.Name
+                    },
+                },
+                Quantity = 1,
+            });
+
+
+            var service = new SessionService();
+            Session session = service.Create(options);
+            _unitOfWork.Reservation.UpdateStripePaymentID(reservation.Id, session.Id, session.PaymentIntentId);
+            _unitOfWork.Save();
+
+            Response.Headers.Add("Location", session.Url);
+            return new StatusCodeResult(303);
         }
 
         [Authorize]
         public IActionResult ReservationConfirmation(int reservationId)
         {
-                return View(reservationId);
+            Reservation reservationFromDb = _unitOfWork.Reservation.Get(u => u.Id == reservationId,
+                includeProperties: "User,Villa");
+
+            if (reservationFromDb.Status == SD.StatusPending)
+            {
+                var service = new SessionService();
+                Session session = service.Get(reservationFromDb.StripeSessionId);
+
+                if (session.PaymentStatus == "paid")
+                {
+                    _unitOfWork.Reservation.UpdateStatus(reservationFromDb.Id, SD.StatusApproved);
+                    _unitOfWork.Reservation.UpdateStripePaymentID(reservationFromDb.Id, session.Id, session.PaymentIntentId);
+
+                    _unitOfWork.Save();
+                    LogAction("Update", "Reservation", $"Payment successful for Reservation with Id: {reservationFromDb.Id}");
+                }
+            }
+
+            return View(reservationId);
         }
 
         private void LogAction(string operationType, string tableName, string details)
@@ -66,6 +118,7 @@ namespace Booking.Web.Controllers
                 Id = Guid.NewGuid(),
                 TableName = tableName,
                 OperationType = operationType,
+                Details = details,
                 Date = DateTime.Now
             };
             _unitOfWork.Villa.LogAction(log);
