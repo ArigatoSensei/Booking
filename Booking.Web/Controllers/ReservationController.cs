@@ -15,6 +15,13 @@ namespace Booking.Web.Controllers
         {
             _unitOfWork = unitOfWork;
         }
+
+        [Authorize]
+        public IActionResult Index()
+        {
+            return View();
+        }
+
         [Authorize]
         public IActionResult FinalizeReservation(int villaId, DateOnly checkInDate, int nights)
         {
@@ -111,6 +118,7 @@ namespace Booking.Web.Controllers
             return View(reservationId);
         }
 
+
         private void LogAction(string operationType, string tableName, string details)
         {
             var log = new Log_19118162
@@ -124,5 +132,43 @@ namespace Booking.Web.Controllers
             _unitOfWork.Villa.LogAction(log);
             _unitOfWork.Save();
         }
+
+        [Authorize]
+        public IActionResult ReservationDetails(int reservationId)
+        {
+            Reservation reservationFromDb = _unitOfWork.Reservation.Get(u => u.Id == reservationId,
+             includeProperties: "User,Villa");
+
+            return View(reservationFromDb);
+        }
+
+        #region API Calls
+        [HttpGet]
+        [Authorize]
+        public IActionResult GetAll(string status)
+        {
+            IEnumerable<Reservation> objReservations;
+
+            if (User.IsInRole(SD.Role_Admin))
+            {
+                objReservations = 
+                    _unitOfWork.Reservation.GetAll(includeProperties: "User,Villa");
+            }
+            else
+            {
+                var claimsIdentity = (ClaimsIdentity)User.Identity;
+                var userId = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier).Value;
+
+                objReservations = _unitOfWork.Reservation
+                    .GetAll(u => u.UserId == userId, includeProperties: "User,Villa");
+            }
+            if(!string.IsNullOrEmpty(status))
+            {
+                objReservations = objReservations.Where(u => u.Status.ToLower().Equals(status.ToLower()));
+            }
+            return Json(new { data = objReservations });
+        }
+
+        #endregion
     }
 }
