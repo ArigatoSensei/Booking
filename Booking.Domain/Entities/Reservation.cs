@@ -52,6 +52,8 @@ namespace Booking.Domain.Entities
         public DateTime ActualCheckOutDate { get; set; }
 
         public int VillaNumber { get; set; }
+        [NotMapped]
+        public List<VillaNumber> VillaNumbers { get; set; }
         public DateTime Date_19118162 { get; set; } = DateTime.Now;
 
     }

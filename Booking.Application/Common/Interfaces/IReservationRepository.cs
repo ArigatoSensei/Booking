@@ -12,7 +12,7 @@ namespace Booking.Application.Common.Interfaces
     {
         
         void Update(Reservation entity);
-        void UpdateStatus(int reservationId, string reservationStatus);
+        void UpdateStatus(int reservationId, string reservationStatus, int villaNumber);
         void UpdateStripePaymentID(int reservationId, string sessionId, string paymentIntentId);
 
     }
