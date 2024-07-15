@@ -30,7 +30,7 @@ namespace Booking.Infrastructure.Repository
             return dbSet.Any(filter);
         }
 
-        public T Get(Expression<Func<T, bool>> filter, string? includeProperties = null)
+        public T Get(Expression<Func<T, bool>> filter, string? includeProperties = null, bool tracked = false)
         {
             IQueryable<T> query = dbSet;
             if (filter != null)
@@ -49,9 +49,17 @@ namespace Booking.Infrastructure.Repository
             return query.FirstOrDefault();
         }
 
-        public IEnumerable<T> GetAll(Expression<Func<T, bool>>? filter = null, string? includeProperties = null)
+        public IEnumerable<T> GetAll(Expression<Func<T, bool>>? filter = null, string? includeProperties = null, bool tracked = false)
         {
-            IQueryable<T> query = dbSet;
+            IQueryable<T> query;
+            if (tracked)
+            {
+                query = dbSet;
+            }
+            else
+            {
+                query = dbSet.AsNoTracking();
+            }
             if (filter != null)
             {
                 query = query.Where(filter);
@@ -65,8 +73,8 @@ namespace Booking.Infrastructure.Repository
                 }
             }
             return query.ToList();
+     
         }
-
         public void LogAction(Log_19118162 log)
         {
             _db.Log_19118162.Add(log);
