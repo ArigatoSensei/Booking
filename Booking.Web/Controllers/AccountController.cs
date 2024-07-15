@@ -171,6 +171,7 @@ namespace Booking.Web.Controllers
                 Id = Guid.NewGuid(),
                 TableName = tableName,
                 OperationType = operationType,
+                Details = details,
                 Date = DateTime.Now
             };
             _unitOfWork.Villa.LogAction(log);
